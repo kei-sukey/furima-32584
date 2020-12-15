@@ -29,7 +29,7 @@
 | condition_id        | integer    | null: false                    |
 | delivery_charge_id  | integer    | null: false                    |
 | prefecture_id       | integer    | null: false                    |
-| shipping_days_id    | integer    | null: false                    |
+| shipping_day_id     | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 ### Association
@@ -41,7 +41,7 @@
 - belongs_to :condition
 - belongs_to :delivery_charge
 - belongs_to :prefecture
-- belongs_to :shipping_days
+- belongs_to :shipping_day
 
 ## orders テーブル
 
