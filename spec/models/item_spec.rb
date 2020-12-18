@@ -4,12 +4,10 @@ RSpec.describe Item, type: :model do
   before do
     user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user_id: user.id)
-    # @item = FactoryBot.create(:item)
   end
 
   describe '#create' do
     context '商品出品ができる場合' do
-      # exampleは仮です
       it '必要な情報を適切に入力すると商品出品できること' do
         expect(@item).to be_valid
       end
@@ -41,7 +39,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリー情報が「---」だと商品出品ができないこと' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Category Select')
       end
@@ -53,7 +51,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '商品状態の情報が「---」だと商品出品ができないこと' do
-        @item.condition_id = '1'
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Condition Select')
       end
@@ -65,7 +63,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '配送料の負担についての情報が「---」だと商品出品ができないこと' do
-        @item.delivery_charge_id = '1'
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery charge Select')
       end
@@ -77,7 +75,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '発送元の地域についての情報が「---」だと商品出品ができないこと' do
-        @item.prefecture_id = '1'
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Prefecture Select')
       end
@@ -89,7 +87,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '発送までの日数についての情報が「---」だと商品出品ができないこと' do
-        @item.shipping_day_id = '1'
+        @item.shipping_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipping day Select')
       end
@@ -101,13 +99,13 @@ RSpec.describe Item, type: :model do
       end
 
       it '販売価格が300円未満だと商品出品ができないこと' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
 
       it '販売価格が9,999,999円を超えると商品出品ができないこと' do
-        @item.price = '10,000,000'
+        @item.price = 10,000,000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
