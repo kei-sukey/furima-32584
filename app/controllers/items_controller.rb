@@ -46,6 +46,8 @@ class ItemsController < ApplicationController
       else
         render :show
       end
+    else
+      render :show
     end
   end
 
