@@ -8,7 +8,7 @@ const pay = () => {
     const formData = new FormData(formResult);
 
     const card = {
-      number: formData.get("order_shipping_address[number]"),
+      number: formData.get("order_shipping_address[card_number]"),
       exp_month: formData.get("order_shipping_address[exp_month]"),
       exp_year: `20${formData.get("order_shipping_address[exp_year]")}`,
       cvc: formData.get("order_shipping_address[cvc]"),
