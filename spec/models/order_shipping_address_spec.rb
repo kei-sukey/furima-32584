@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OrderShippingAddress, type: :model do
   before do
-    @order_shipping_address = FactoryBot.build(:order_shipping_address)
+    @order_shipping_address = FactoryBot.build(:order_shipping_address, user_id: 1, item_id: 1)
   end
 
   describe '#create' do
@@ -80,6 +80,12 @@ RSpec.describe OrderShippingAddress, type: :model do
 
       it "電話番号にハイフンが含まれていると登録できないこと" do
         @order_shipping_address.telephone_number = "090-1234-5678"
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Telephone number Input only max 11 digit numbers")
+      end
+
+      it "電話番号は英数混合では登録できないこと" do
+        @order_shipping_address.telephone_number = "090abcd5678"
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Telephone number Input only max 11 digit numbers")
       end

@@ -13,6 +13,8 @@ class OrderShippingAddress
     validates :block
     validates :telephone_number, format: {with: /\A\d{1,11}\z/,
                                           message: 'Input only max 11 digit numbers' }
+    validates :item_id
+    validates :user_id
   end
 
   def save

@@ -4,10 +4,8 @@ class OrdersController < ApplicationController
 
   def index
     unless @item.order.present?
+      redirect_to root_path if current_user.id == @item.user_id
       @order_shipping_address = OrderShippingAddress.new
-      if current_user.id == @item.user_id
-        redirect_to root_path
-      end
     else
       redirect_to root_path
     end
