@@ -3,12 +3,8 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    unless @item.order.present?
-      redirect_to root_path if current_user.id == @item.user_id
-      @order_shipping_address = OrderShippingAddress.new
-    else
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.order.present? || current_user.id == @item.user_id
+    @order_shipping_address = OrderShippingAddress.new
   end
 
   def create
